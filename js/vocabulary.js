@@ -201,6 +201,10 @@ const vocabStyles = `
         word-break: break-word;
     }
 
+    body.dark-mode .vocab-term {
+        color: #ffffff;
+    }
+
     .vocab-meaning {
         color: var(--text);
         font-size: 14px;

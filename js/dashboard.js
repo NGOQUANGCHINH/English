@@ -352,12 +352,16 @@ const dashboardStyles = `
         align-items: center;
         justify-content: center;
         border-radius: 4px;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 17px;
         cursor: pointer;
         transition: all var(--transition);
         border: 1px solid var(--border);
         padding: 4px;
+    }
+
+    body.dark-mode .calendar-cell {
+        color: var(--text);
     }
 
     .calendar-cell.learned {
