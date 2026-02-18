@@ -229,6 +229,10 @@ const dashboardStyles = `
         background: var(--bg-secondary);
     }
 
+    body.dark-mode .stat-value {
+        color: #ffffff !important;
+    }
+
     .stat-card:hover {
         transform: translateY(-4px);
         box-shadow: var(--shadow-md);
@@ -246,7 +250,7 @@ const dashboardStyles = `
     .stat-value {
         font-size: 32px;
         font-weight: 700;
-        color: var(--primary);
+        color: var(--primary) !important;
         margin-bottom: 8px;
     }
 
