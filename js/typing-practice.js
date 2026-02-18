@@ -307,14 +307,10 @@ const typingPracticeStyles = `
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%);
         padding: 20px 32px;
         border-radius: 20px;
         box-shadow: 0 8px 24px rgba(102, 126, 234, 0.35);
-    }
-
-    body.dark-mode .typing-stats-bar {
-        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
     }
 
     .typing-stat {
@@ -337,7 +333,7 @@ const typingPracticeStyles = `
 
     .typing-progress-bar {
         height: 100%;
-        background: linear-gradient(90deg, #10b981, #34d399);
+        background: linear-gradient(90deg, var(--success), #34d399);
         border-radius: 6px;
         transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         width: 0%;
@@ -467,7 +463,7 @@ const typingPracticeStyles = `
     }
 
     .streak-badge {
-        background: linear-gradient(135deg, #f59e0b, #fbbf24);
+        background: linear-gradient(135deg, var(--warning), #fbbf24);
         color: white;
         padding: 6px 16px;
         border-radius: 24px;
@@ -573,7 +569,7 @@ const typingPracticeStyles = `
     }
 
     .stat-value.streak {
-        color: #f59e0b;
+        color: var(--warning);
     }
 
     @media (max-width: 768px) {
