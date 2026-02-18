@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Learning Hub - Học Tiếng Anh Hiệu Quả</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- Font Awesome (updated to v7 as requested) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                 <span class="logo-icon">🌍</span>
+                <span class="logo-text">English Hub</span>
+            </div>
+            <button class="sidebar-close" id="sidebarClose">✕</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                <i class="icon fa-solid fa-chart-line"></i>
+                <span class="label">Dashboard</span>
+            </a>
+            <a href="#vocabulary" class="nav-item" data-section="vocabulary">
+                <i class="icon fa-solid fa-book"></i>
+                <span class="label">My Vocabulary</span>
+            </a>
+            <a href="#flashcard" class="nav-item" data-section="flashcard">
+                <i class="icon fa-solid fa-clone"></i>
+                <span class="label">Flashcard</span>
+            </a>
+            <a href="#verb-forms" class="nav-item" data-section="verb-forms">
+                <i class="icon fa-solid fa-bolt"></i>
+                <span class="label">Verb Forms</span>
+            </a>
+            <a href="#typing-practice" class="nav-item" data-section="typing-practice">
+                <i class="icon fa-solid fa-keyboard"></i>
+                <span class="label">Typing Practice</span>
+            </a>
+            <a href="#quiz" class="nav-item" data-section="quiz">
+                <i class="icon fa-solid fa-question-circle"></i>
+                <span class="label">Quiz</span>
+            </a>
+            <a href="#settings" class="nav-item" data-section="settings">
+                <i class="icon fa-solid fa-cog"></i>
+                <span class="label">Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <label class="upload-btn">
+                <i class="icon fa-solid fa-upload"></i>
+                <span>Upload File</span>
+                <input type="file" id="jsonUpload" accept=".json,.csv" hidden>
+            </label>
+            <button class="upload-btn danger-btn" id="sidebarDeleteData">
+                <i class="icon fa-solid fa-trash"></i>
+                <span>Xóa Dữ Liệu</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Header with Toggle & Search -->
+        <header class="header">
+            <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Tìm từ vựng...">
+                <span class="search-icon">🔍</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="section-content">
+                <h1>Dashboard</h1>
+                
+                <div class="dashboard-grid">
+                    <!-- Stats Cards -->
+                    <div class="stat-card">
+                        <div class="stat-label">Streak</div>
+                        <div class="stat-value" id="streakValue">0</div>
+                        <div class="stat-sub">ngày liên tục</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Tổng Từ</div>
+                        <div class="stat-value" id="totalWordsValue">0</div>
+                        <div class="stat-sub">từ vựng đã học</div>
+                    </div>
+
+                    <div class="stat-card">
+<div class="stat-label">Lỗi Sai</div>
+                        <div class="stat-value" id="mistakesValue">0</div>
+                        <div class="stat-sub">từ sai đã ghi nhận</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Hôm Nay</div>
+                        <div class="stat-value" id="todayWordsValue">0</div>
+                        <div class="stat-sub">từ học hôm nay</div>
+                    </div>
+                </div>
+
+                <!-- Learning Calendar -->
+                <div class="calendar-section">
+                    <h2>Lịch Học Tập</h2>
+                    <div class="calendar" id="learningCalendar"></div>
+                </div>
+
+                <!-- Today's Words -->
+                <div class="today-words">
+                    <h2>Từ Vựng Hôm Nay</h2>
+                    <div id="todayWordsList" class="words-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vocabulary Section -->
+        <section id="vocabulary" class="section">
+            <div class="section-content">
+                <h1>My Vocabulary</h1>
+                <div class="vocab-controls">
+                    <input type="text" id="vocabSearch" class="vocab-search" placeholder="Tìm từ...">
+                    <div class="vocab-stats">
+                        <span id="vocabCount">0 từ</span>
+                    </div>
+                </div>
+                <div id="vocabularyList" class="vocabulary-list"></div>
+            </div>
+        </section>
+
+        <!-- Flashcard Section -->
+        <section id="flashcard" class="section">
+            <div class="section-content">
+                <h1>Flashcard</h1>
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-term" id="flashcardTerm">Chưa có từ vựng</div>
+                                <div class="flashcard-hint">Nhấn nút xoay để lật thẻ</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-pronunciation" id="flashcardPronunciation"></div>
+                                <div class="flashcard-meaning" id="flashcardMeaning">Hãy tải từ vựng lên</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-controls">
+                        <button class="btn btn-secondary btn-icon" id="shuffleFlashcard" title="Shuffle"><i class="fa-solid fa-shuffle" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary btn-icon" id="flipFlashcard" title="Flip"><i class="fa-solid fa-rotate" aria-hidden="true"></i></button>
+                        <button class="btn btn-primary btn-icon" id="prevFlashcard" aria-label="Previous flashcard" title="Previous"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                        <button class="btn btn-primary btn-icon" id="nextFlashcard" aria-label="Next flashcard" title="Next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary btn-icon" id="speakFlashcard" title="Speak"><i class="fa-solid fa-volume-high" aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="flashcard-counter">
+                        <span id="flashcardCounter">1 / 0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verb Forms Section -->
+        <section id="verb-forms" class="section">
+            <div class="section-content">
+                <h1>Bảng Động Từ Bất Quy Tắc (Irregular Verbs)</h1>
+                <div class="verb-table-wrapper">
+                    <table class="verb-table" id="verbTable">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>V1 (Base)</th>
+                                <th>V2 (Past)</th>
+                                <th>V3 (Past Participle)</th>
+                                <th>Meaning</th>
+                                <th>Lưu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="verbTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typing Practice Section -->
+        <section id="typing-practice" class="section">
+            <div class="section-content">
+                <h1>Luyện Gõ Tiếng Anh</h1>
+                <div class="typing-practice-container">
+                    <!-- Stats Bar -->
+                    <div class="typing-stats-bar">
+                        <div class="typing-stat" id="typingScore">⭐ 0</div>
+                        <div class="typing-stat" id="typingTotal">📝 0</div>
+                        <div class="typing-stat" id="typingStreak">🔥 0</div>
+                        <div class="typing-stat" id="typingCounter">1 / 0</div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="typing-progress-wrapper">
+                        <div class="typing-progress-bar" id="typingProgressBar"></div>
+                    </div>
+
+                    <!-- Main Card -->
+                    <div class="typing-card">
+                        <div class="typing-meaning">
+                            <div class="meaning-label">Nghĩa</div>
+<div id="typingMeaning" class="meaning-display">Hãy tải từ vựng lên</div>
+                        </div>
+
+                        <div class="typing-input-container">
+                            <input 
+                                type="text" 
+                                id="typingInput" 
+                                class="typing-input" 
+                                placeholder="Nhập từ tiếng Anh..."
+                                autocomplete="off"
+                                autofocus
+                            >
+                            <div class="typing-feedback" id="typingFeedback"></div>
+                        </div>
+
+                        <div class="typing-controls">
+                            <button class="btn btn-secondary btn-icon" id="typingPrev" aria-label="Previous" title="Trước">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button class="btn btn-primary btn-large" id="typingSubmit">
+                                <i class="fa-solid fa-check"></i> Kiểm Tra
+                            </button>
+                            <button class="btn btn-secondary btn-icon" id="typingNext" aria-label="Next" title="Sau">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section">
+            <div class="section-content">
+                <h1>Quiz - Trắc Nghiệm</h1>
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <div class="quiz-counter">
+                            <span id="quizCounter">1 / 0</span>
+                        </div>
+                        <div class="quiz-controls-header">
+                            <button class="btn btn-small" id="toggleQuestionLang">🔄 Đảo Ngôn Ngữ</button>
+                            <button class="btn btn-small" id="toggleAnswerLang">↔️ Đảo Đáp Án</button>
+                            <button class="btn btn-small" id="toggleAnswers">🎲 Đảo Đáp Án (Random)</button>
+                            <button class="btn btn-small" id="speakQuestion">🔊 Phát Âm</button>
+                            <button class="btn btn-small" id="resetQuestion">🔄 Làm Lại</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+<div class="question-text" id="questionText">Hãy tải từ vựng lên</div>
+                    </div>
+
+                    <div class="quiz-options" id="quizOptions">
+                        <button class="quiz-option" data-option="a"></button>
+                        <button class="quiz-option" data-option="b"></button>
+                        <button class="quiz-option" data-option="c"></button>
+                        <button class="quiz-option" data-option="d"></button>
+                    </div>
+
+                    <div class="quiz-navigation">
+                        <button class="btn btn-secondary btn-icon" id="quizPrev" aria-label="Previous quiz" title="Previous"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary btn-icon" id="quizNext" aria-label="Next quiz" title="Next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="quiz-list-toggle">
+                        <button class="btn btn-secondary" id="toggleQuizList">📋 Danh Sách Câu</button>
+                    </div>
+                </div>
+
+                <!-- Quiz List Modal -->
+                <div class="modal" id="quizListModal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Danh Sách Câu Hỏi</h3>
+                            <button class="modal-close">✕</button>
+                        </div>
+                        <div id="quizListItems" class="quiz-list-items"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section">
+            <div class="section-content">
+                <h1>Cài Đặt</h1>
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <label for="speechRate" class="setting-label">
+                            <span>Tốc Độ Nói</span>
+                            <span id="speechRateValue">1.0x</span>
+                        </label>
+                        <input 
+                            type="range" 
+                            id="speechRate" 
+                            min="0.5" 
+                            max="2" 
+                            step="0.1" 
+                            value="1"
+                            class="slider"
+                        >
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="voiceSelect" class="setting-label">
+                            <span>Giọng Nói</span>
+                        </label>
+                        <select id="voiceSelect" class="select-input">
+                            <option value="default">Mặc Định</option>
+                        </select>
+                        <div style="margin-top:8px;display:flex;gap:8px;align-items:center;">
+                            <button class="btn btn-small" id="listVoicesBtn">Hiện Voices</button>
+                            <button class="btn btn-small" id="testVoiceBtn">Thử Giọng</button>
+                        </div>
+                        <div id="voiceListDisplay" style="margin-top:10px;font-size:13px;color:var(--secondary);"></div>
+                    </div>
+
+                    <button class="btn btn-danger" id="resetData">🗑️ Xóa Tất Cả Dữ Liệu</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteConfirmModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Xác Nhận Xóa Dữ Liệu</h3>
+                <button class="modal-close" id="deleteModalClose">✕</button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa tất cả dữ liệu không?</p>
+                <p class="warning-text">Hành động này không thể hoàn tác!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="deleteCancelBtn">Hủy</button>
+                <button class="btn btn-danger" id="deleteConfirmBtn">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/vocabulary.js"></script>
+    <script src="js/flashcard.js"></script>
+    <script src="js/verb-forms.js"></script>
+    <script src="js/typing-practice.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>

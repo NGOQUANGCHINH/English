@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn Nhanh - English Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section p, .section li {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .section ul {
+            margin-left: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .feature-card p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(34, 197, 94, 0.1));
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .info-box strong {
+            color: #10b981;
+        }
+
+        .tip {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(217, 119, 6, 0.1));
+            border-left: 4px solid #f97316;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .tip strong {
+            color: #f97316;
+        }
+
+        footer {
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 15px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .emoji {
+            font-size: 28px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 English Learning Hub</h1>
+            <p>Ứng dụng học tiếng Anh hiện đại với giao diện Minimalism</p>
+        </div>
+
+        <div class="content">
+            <!-- Quick Start -->
+            <div class="section">
+                <h2><span class="emoji">🚀</span> Bắt Đầu Nhanh</h2>
+                <ol>
+                    <li><strong>Mở trang:</strong> Nhấn vào <code>index.html</code> để mở ứng dụng</li>
+                    <li><strong>Tải từ vựng:</strong> Nhấn nút "📤 Upload JSON" để tải file từ vựng riêng</li>
+                    <li><strong>Bắt đầu học:</strong> Chọn một bài từ menu bên trái</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>💡 Lưu ý:</strong> Ứng dụng sử dụng LocalStorage để lưu dữ liệu. Dữ liệu sẽ được giữ lại khi bạn đóng và mở lại trình duyệt.
+                </div>
+            </div>
+
+            <!-- Features Overview -->
+            <div class="section">
+                <h2><span class="emoji">✨</span> Các Tính Năng Chính</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>📊 Dashboard</h3>
+                        <p>Xem lịch học tập, streak, thống kê và từ học hôm nay</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📚 My Vocabulary</h3>
+                        <p>Duyệt tất cả từ vựng, tìm kiếm và nghe phát âm</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎴 Flashcard</h3>
+                        <p>Học bằng thẻ ghi nhớ, lật để xem nghĩa</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ Verb Forms</h3>
+                        <p>Bảng 150+ động từ bất quy tắc V1-V2-V3</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⌨️ Typing Practice</h3>
+                        <p>Luyện gõ tiếng Anh, kiểm tra chính tả</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>❓ Quiz</h3>
+                        <p>Trắc nghiệm 4 đáp án, đảo ngôn ngữ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Using Features -->
+            <div class="section">
+                <h2><span class="emoji">📖</span> Cách Sử Dụng Từng Tính Năng</h2>
+
+                <h3 style="color: #667eea; margin-top: 20px;">🎴 Flashcard</h3>
+                <ul>
+                    <li>Nhấn vào thẻ để lật xem nghĩa tiếng Việt</li>
+                    <li>Nhấn "✓ Đúng" nếu bạn nhớ từ đó</li>
+                    <li>Nhấn "✗ Sai" nếu bạn quên</li>
+                    <li>Dùng "🔀 Đảo" để xáo trộn thẻ</li>
+                    <li>Nhấn "🔊 Nghe" để nghe phát âm</li>
+                </ul>
+
+                <h3 style="color: #667eea; margin-top: 20px;">⌨️ Typing Practice</h3>
+                <ul>
+                    <li>Xem nghĩa tiếng Việt hiển thị</li>
+                    <li>Gõ từ tiếng Anh vào ô input</li>
+                    <li>Nhấn Enter hoặc nút "Kiểm Tra"</li>
+                    <li>Xem kết quả: đúng (xanh) hoặc sai (đỏ)</li>
+                    <li>Dùng mũi tên ⬅️ ➡️ để chuyển câu</li>
+                </ul>
+
+                <h3 style="color: #667eea; margin-top: 20px;">❓ Quiz</h3>
+                <ul>
+                    <li>Đọc câu hỏi tiếng Anh</li>
+                    <li>Chọn đáp án từ 4 lựa chọn</li>
+                    <li>Thấy kết quả tức thì (xanh=đúng, đỏ=sai)</li>
+                    <li>Tự động chuyển câu tiếp theo</li>
+                    <li>Nhấn "📋 Danh Sách Câu" để xem tất cả</li>
+                </ul>
+
+                <h3 style="color: #667eea; margin-top: 20px;">⚡ Verb Forms</h3>
+                <ul>
+                    <li>Duyệt bảng động từ từ 1 đến hết</li>
+                    <li>Mỗi hàng có V1 (Base), V2 (Past), V3 (Past Participle)</li>
+                    <li>Nhấn "☐ Lưu" để ghi nhớ động từ</li>
+                    <li>Động từ được tích sẽ có nền xanh</li>
+                </ul>
+
+                <h3 style="color: #667eea; margin-top: 20px;">📊 Dashboard</h3>
+                <ul>
+                    <li><strong>Streak:</strong> Số ngày liên tục học</li>
+                    <li><strong>Lịch Học:</strong> Xanh=học, Xám=không học</li>
+                    <li><strong>Thống Kê:</strong> Tổng từ, lỗi ghi nhớ, từ hôm nay</li>
+                    <li>Dữ liệu cập nhật tự động khi bạn học</li>
+                </ul>
+            </div>
+
+            <!-- JSON Format -->
+            <div class="section">
+                <h2><span class="emoji">📋</span> Định Dạng File JSON</h2>
+                <p>Để tải từ vựng riêng, tạo file JSON theo định dạng này:</p>
+
+                <div class="code-block">
+{
+  "version": 1,
+  "type": "words",
+  "words": [
+    { "term": "hello", "meaning": "xin chào" },
+    { "term": "thanks", "meaning": "cảm ơn" },
+    { "term": "goodbye", "meaning": "tạm biệt" }
+  ]
+}
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Mẹo:</strong> Tất cả "term" phải là tiếng Anh, "meaning" là tiếng Việt. Bạn có thể có bao nhiêu từ tùy thích!
+                </div>
+            </div>
+
+            <!-- Upload Instructions -->
+            <div class="section">
+                <h2><span class="emoji">📤</span> Cách Tải File Từ Vựng</h2>
+                <ol>
+                    <li>Chuẩn bị file JSON theo format trên</li>
+                    <li>Mở ứng dụng English Learning Hub</li>
+                    <li>Nhấn nút <strong>"📤 Upload JSON"</strong> trong menu bên trái</li>
+                    <li>Chọn file JSON từ máy tính của bạn</li>
+                    <li>Xác nhận - từ vựng sẽ được cập nhật!</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>✅ Thành công:</strong> Bạn sẽ thấy thông báo "Tải từ vựng thành công!" khi tải xong.
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="section">
+                <h2><span class="emoji">⚙️</span> Cài Đặt</h2>
+                <ul>
+                    <li><strong>Tốc Độ Nói:</strong> Điều chỉnh từ 0.5x (chậm) đến 2x (nhanh)</li>
+                    <li><strong>Giọng Nói:</strong> Chọn giọng tiếng Anh ưa thích</li>
+                    <li><strong>Dark Mode:</strong> Bật/tắt chế độ tối</li>
+                    <li><strong>Thông Báo:</strong> Bật/tắt thông báo</li>
+                    <li><strong>Xóa Dữ Liệu:</strong> Xóa tất cả lịch học và thống kê</li>
+                </ul>
+
+                <div class="tip">
+                    <strong>⚠️ Cảnh báo:</strong> Xóa dữ liệu không thể hoàn tác! Hãy cẩn thận.
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="section">
+                <h2><span class="emoji">💡</span> Mẹo Học Tập Hiệu Quả</h2>
+                <ul>
+                    <li><strong>Duy Trì Streak:</strong> Học mỗi ngày để duy trì chuỗi học liên tục</li>
+                    <li><strong>Flashcard Thường Xuyên:</strong> Lặp lại từ sai 3-5 lần</li>
+                    <li><strong>Quiz Để Kiểm Tra:</strong> Làm quiz định kỳ để đánh giá</li>
+                    <li><strong>Typing Practice:</strong> Luyện gõ để cải thiện kỹ năng viết</li>
+                    <li><strong>Học Verb Forms:</strong> Tập trung vào động từ bất quy tắc</li>
+                    <li><strong>Dùng Phát Âm:</strong> Nghe phát âm để cải thiện nghe</li>
+                    <li><strong>Học Từ Từ:</strong> Tải từ vựng từ từ, không cơn bão</li>
+                </ul>
+            </div>
+
+            <!-- FAQs -->
+            <div class="section">
+                <h2><span class="emoji">❓</span> Câu Hỏi Thường Gặp</h2>
+
+                <h3 style="color: #667eea; margin-top: 15px;">Dữ liệu của tôi được lưu ở đâu?</h3>
+                <p>Tất cả dữ liệu được lưu trong <strong>LocalStorage</strong> của trình duyệt. Nó sẽ được giữ lại khi bạn đóng trang, nhưng nếu xóa cache/cookies thì sẽ mất.</p>
+
+                <h3 style="color: #667eea; margin-top: 15px;">Có thể backup dữ liệu không?</h3>
+                <p>Hiện tại không có tính năng export tự động, nhưng bạn có thể tải file JSON mới để cập nhật từ vựng.</p>
+
+                <h3 style="color: #667eea; margin-top: 15px;">Phát âm không hoạt động?</h3>
+                <p>Hãy kiểm tra xem trình duyệt của bạn có hỗ trợ Web Speech API không. Chrome, Edge, Safari đều hỗ trợ.</p>
+
+                <h3 style="color: #667eea; margin-top: 15px;">Tôi có thể thêm hình ảnh vào từ vựng không?</h3>
+                <p>Hiện tại không hỗ trợ. Nếu cần, bạn có thể tự sửa code HTML/CSS.</p>
+
+                <h3 style="color: #667eea; margin-top: 15px;">Ứng dụng có hoạt động offline không?</h3>
+                <p>Có! Ứng dụng hoàn toàn chạy trên trình duyệt, không cần kết nối internet.</p>
+            </div>
+
+            <!-- Keyboard Shortcuts -->
+            <div class="section">
+                <h2><span class="emoji">⌨️</span> Phím Tắt</h2>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                    <tr style="background: #f5f5f5;">
+                        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Phím</th>
+                        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Chức Năng</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>Arrow Right →</code></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Câu/Thẻ tiếp theo</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>Arrow Left ←</code></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Câu/Thẻ trước</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>Enter</code></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Kiểm tra đáp án</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Browser Support -->
+            <div class="section">
+                <h2><span class="emoji">🌐</span> Hỗ Trợ Trình Duyệt</h2>
+                <ul>
+                    <li>✅ Chrome/Chromium (khuyến nghị)</li>
+                    <li>✅ Edge</li>
+                    <li>✅ Firefox</li>
+                    <li>✅ Safari</li>
+                    <li>✅ Tất cả trình duyệt modern</li>
+                </ul>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="section">
+                <h2><span class="emoji">🎯</span> Sẵn Sàng Bắt Đầu?</h2>
+                <p>Hãy mở <strong>index.html</strong> và bắt đầu học tiếng Anh ngay hôm nay!</p>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="window.location.href='index.html'">
+                        🚀 Mở Ứng Dụng
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='README.md'">
+                        📖 Tài Liệu Đầy Đủ
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>English Learning Hub © 2024 | Thiết kế với ❤️ để học tiếng Anh hiệu quả</p>
+            <p>Made with HTML5, CSS3, JavaScript Vanilla | No Framework | 100% Local Storage</p>
+        </footer>
+    </div>
+</body>
+</html>

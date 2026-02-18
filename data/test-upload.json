@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "type": "words",
+  "words": [
+    {
+      "term": "test1",
+      "meaning": "kiểm tra 1"
+    },
+    {
+      "term": "test2",
+      "meaning": "kiểm tra 2"
+    },
+    {
+      "term": "test3",
+      "meaning": "kiểm tra 3"
+    }
+  ]
+}

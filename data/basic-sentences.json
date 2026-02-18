@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "type": "words",
+  "words": [
+    {
+      "term": "Hello, how are you?",
+      "meaning": "Xin chào, bạn khỏe không?"
+    },
+    {
+      "term": "My name is John",
+      "meaning": "Tên tôi là John"
+    },
+    {
+      "term": "Nice to meet you",
+      "meaning": "Rất vui được gặp bạn"
+    },
+    {
+      "term": "Where are you from?",
+      "meaning": "Bạn đến từ đâu?"
+    },
+    {
+      "term": "I am from Vietnam",
+      "meaning": "Tôi đến từ Việt Nam"
+    },
+    {
+      "term": "What is your name?",
+      "meaning": "Tên của bạn là gì?"
+    },
+    {
+      "term": "How old are you?",
+      "meaning": "Bạn bao nhiêu tuổi?"
+    },
+    {
+      "term": "I am 25 years old",
+      "meaning": "Tôi 25 tuổi"
+    },
+    {
+      "term": "What do you do?",
+      "meaning": "Bạn làm công việc gì?"
+    },
+    {
+      "term": "I am a student",
+      "meaning": "Tôi là một học sinh"
+    },
+    {
+      "term": "Do you speak English?",
+      "meaning": "Bạn có nói tiếng Anh không?"
+    },
+    {
+      "term": "Yes, I speak English",
+      "meaning": "Vâng, tôi nói tiếng Anh"
+    },
+    {
+      "term": "Thank you very much",
+      "meaning": "Cảm ơn bạn rất nhiều"
+    },
+    {
+      "term": "You are welcome",
+      "meaning": "Không có gì, rất sẵn lòng"
+    },
+    {
+      "term": "Excuse me, where is the bathroom?",
+      "meaning": "Xin lỗi, nhà vệ sinh ở đâu?"
+    },
+    {
+      "term": "I do not understand",
+      "meaning": "Tôi không hiểu"
+    },
+    {
+      "term": "Can you help me?",
+      "meaning": "Bạn có thể giúp tôi được không?"
+    },
+    {
+      "term": "I am sorry",
+      "meaning": "Tôi rất xin lỗi"
+    },
+    {
+      "term": "See you later",
+      "meaning": "Tạm biệt, hẹn gặp lại"
+    },
+    {
+      "term": "Have a nice day",
+      "meaning": "Chúc bạn có một ngày tốt lành"
+    }
+  ]
+}

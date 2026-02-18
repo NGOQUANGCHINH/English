@@ -1,0 +1,32 @@
+{
+  "name": "english-learning-hub",
+  "version": "1.0.0",
+  "description": "Ứng dụng web học tiếng Anh hiện đại với giao diện Minimalism",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8000 -o index.html",
+    "dev": "npx http-server -p 8000 -c-1"
+  },
+  "keywords": [
+    "english",
+    "learning",
+    "vocabulary",
+    "quiz",
+    "flashcard",
+    "typing-practice",
+    "verb-forms",
+    "minimalism"
+  ],
+  "author": "English Learning Hub",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.0"
+  }
+}

@@ -1,0 +1,258 @@
+/* ===== Animations ===== */
+
+/* Slide Up */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide Down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Scale Pop */
+@keyframes scalePop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Bounce */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Pulse */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Flip */
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(180deg);
+    }
+}
+
+/* Rotate */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Shake */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Shimmer (loading) */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Rainbow */
+@keyframes rainbow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Glow */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+    }
+}
+
+/* Slide Left */
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide Right */
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply animations to elements */
+.stat-card {
+    animation: slideUp 0.5s ease-out;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* No flashcard-inner styles here - they are defined in style.css */
+
+.quiz-option {
+    animation: slideUp 0.4s ease-out;
+}
+
+.quiz-option:nth-child(1) { animation-delay: 0.1s; }
+.quiz-option:nth-child(2) { animation-delay: 0.2s; }
+.quiz-option:nth-child(3) { animation-delay: 0.3s; }
+.quiz-option:nth-child(4) { animation-delay: 0.4s; }
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.words-list > div {
+    animation: slideUp 0.4s ease-out;
+}
+
+.vocabulary-list > div {
+    animation: slideUp 0.4s ease-out;
+}
+
+/* Color transitions */
+.correct-answer {
+    animation: glow 0.5s ease-in-out;
+    background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+.incorrect-answer {
+    animation: shake 0.4s ease-in-out;
+    background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+/* Loading spinner */
+.loading {
+    display: inline-block;
+    animation: rotate 1s linear infinite;
+}
+
+/* Tooltip */
+.tooltip {
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Smooth page transition */
+section.active {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Hover effects */
+.nav-item:hover {
+    animation: slideRight 0.3s ease-out;
+}
+
+.card:hover {
+    animation: scalePop 0.3s ease-out;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Success animation */
+@keyframes successPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.success-icon {
+    animation: successPulse 0.6s ease-out;
+}
+
+/* Error animation */
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.error-input {
+    animation: errorShake 0.4s ease-in-out;
+}
