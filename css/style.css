@@ -27,10 +27,10 @@
 body.dark-mode {
     --light: #0f172a;
     --dark: #ffffff;
-    --border: #334155;
-    --text: #ffffff;
+    --border: #475569;
+    --text: #f1f5f9;
     --bg-secondary: #1e293b;
-    --secondary: #94a3b8;
+    --secondary: #cbd5e1;
 }
 
 /* ===== Global Styles ===== */
