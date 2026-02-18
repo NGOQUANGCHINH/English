@@ -288,7 +288,7 @@ const dashboardStyles = `
     }
 
     body.dark-mode .calendar-month-header {
-        color: var(--light);
+        color: var(--text);
     }
 
     .calendar-month-title {
