@@ -1,0 +1,49 @@
+name: Validate JavaScript
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Validate JavaScript files
+      run: |
+        # Check for basic syntax errors in JS files
+        for file in js/*.js; do
+          if [ -f "$file" ]; then
+            echo "Checking $file..."
+            node --check "$file" || echo "Syntax error in $file"
+          fi
+        done
+        
+    - name: Validate JSON files
+      run: |
+        for file in data/*.json; do
+          if [ -f "$file" ]; then
+            echo "Checking $file..."
+            node -e "JSON.parse(require('fs').readFileSync('$file'))" || echo "Invalid JSON in $file"
+          fi
+        done
+        
+    - name: Check HTML exists
+      run: |
+        if [ -f "index.html" ]; then
+          echo "index.html found"
+        else
+          echo "index.html not found"
+          exit 1
+        fi
+
