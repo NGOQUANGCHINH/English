@@ -167,8 +167,12 @@ const dashboard = {
     const container = document.getElementById("todayWordsList");
 
     if (todayWords.length === 0) {
-      container.innerHTML =
-        '<p class="empty-message">Bạn chưa học từ nào hôm nay. Hãy bắt đầu học!</p>';
+      container.innerHTML = `
+        <div class="empty-message">
+            <div class="empty-icon">📚</div>
+            <div class="empty-text">Bạn chưa học từ nào hôm nay.</div>
+            <div class="empty-subtext">Hãy bắt đầu học!</div>
+        </div>`;
       return;
     }
 

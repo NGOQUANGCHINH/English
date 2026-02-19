@@ -123,12 +123,7 @@ class EnglishLearningApp {
             if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('active'));
         });
 
-        // Voice debug / test buttons (Settings)
-        const listVoicesBtn = document.getElementById('listVoicesBtn');
-        if (listVoicesBtn) {
-            listVoicesBtn.addEventListener('click', () => this.listVoices());
-        }
-
+        // Voice test button (Settings)
         const testVoiceBtn = document.getElementById('testVoiceBtn');
         if (testVoiceBtn) {
             testVoiceBtn.addEventListener('click', () => {
@@ -141,23 +136,6 @@ class EnglishLearningApp {
         const themeToggle = document.getElementById('themeToggle');
         if (themeToggle) {
             themeToggle.addEventListener('click', () => this.toggleDarkMode());
-        }
-    }
-
-    listVoices() {
-        try {
-            const voices = window.speechSynthesis.getVoices() || [];
-            console.log('Available voices:', voices);
-            const el = document.getElementById('voiceListDisplay');
-            if (!el) return;
-            if (voices.length === 0) {
-                el.textContent = 'No voices available yet. Try pressing "Thử Giọng" or reload the page.';
-                return;
-            }
-            el.innerHTML = voices.map(v => `<div>${v.name} — ${v.lang} ${v.default ? '(default)' : ''}</div>`).join('');
-        } catch (e) {
-            console.error('Failed to list voices', e);
-            this.showToast('Không thể lấy danh sách voices.', 'error');
         }
     }
 
@@ -310,15 +288,35 @@ class EnglishLearningApp {
 
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'en-US';
+        
+        // Use state.speechRate (which is updated by settings.js when slider changes)
         utterance.rate = this.state.speechRate || 1;
 
-        // Get first available English voice or any voice
+        // Get selected voice - check dropdown first, then saved localStorage
+        const voiceSelect = document.getElementById('voiceSelect');
+        const savedVoice = localStorage.getItem('voiceName');
         const voices = synth.getVoices();
-        const englishVoice = voices.find(v => v.lang.startsWith('en')) || voices[0];
         
-        if (englishVoice) {
-            utterance.voice = englishVoice;
-            console.log('Using voice:', englishVoice.name);
+        let selectedVoice = null;
+        
+        // Check dropdown first, then saved voice
+        if (voiceSelect && voiceSelect.value && voiceSelect.value !== 'default') {
+            selectedVoice = voices.find(v => v.name === voiceSelect.value);
+        }
+        
+        // Fallback to saved voice from localStorage
+        if (!selectedVoice && savedVoice) {
+            selectedVoice = voices.find(v => v.name === savedVoice);
+        }
+        
+        // Fallback to English voice
+        if (!selectedVoice) {
+            selectedVoice = voices.find(v => v.lang.startsWith('en')) || voices[0];
+        }
+        
+        if (selectedVoice) {
+            utterance.voice = selectedVoice;
+            utterance.lang = selectedVoice.lang || 'en-US';
         }
 
         // Handle errors silently for canceled/interrupted

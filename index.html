@@ -157,8 +157,8 @@
                     <div class="flashcard-controls">
                         <button class="btn btn-secondary btn-icon" id="shuffleFlashcard" title="Shuffle"><i class="fa-solid fa-shuffle" aria-hidden="true"></i></button>
                         <button class="btn btn-secondary btn-icon" id="flipFlashcard" title="Flip"><i class="fa-solid fa-rotate" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary btn-icon" id="prevFlashcard" aria-label="Previous flashcard" title="Previous"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
-                        <button class="btn btn-primary btn-icon" id="nextFlashcard" aria-label="Next flashcard" title="Next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary btn-icon" id="prevFlashcard" aria-label="Previous flashcard" title="Previous"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary btn-icon" id="nextFlashcard" aria-label="Next flashcard" title="Next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
                         <button class="btn btn-secondary btn-icon" id="speakFlashcard" title="Speak"><i class="fa-solid fa-volume-high" aria-hidden="true"></i></button>
                     </div>
 
@@ -196,7 +196,8 @@
             <div class="section-content">
                 <h1>Luyện Gõ Tiếng Anh</h1>
                 <div class="typing-practice-container">
-                    <!-- Stats Bar -->
+
+                    <!-- Main Card -->
                     <div class="typing-stats-bar">
                         <div class="typing-stat" id="typingScore">⭐ 0</div>
                         <div class="typing-stat" id="typingTotal">📝 0</div>
@@ -213,7 +214,7 @@
                     <div class="typing-card">
                         <div class="typing-meaning">
                             <div class="meaning-label">Nghĩa</div>
-<div id="typingMeaning" class="meaning-display">Hãy tải từ vựng lên</div>
+                            <div id="typingMeaning" class="meaning-display">Hãy tải từ vựng lên</div>
                         </div>
 
                         <div class="typing-input-container">
@@ -229,14 +230,17 @@
                         </div>
 
                         <div class="typing-controls">
-                            <button class="btn btn-secondary btn-icon" id="typingPrev" aria-label="Previous" title="Trước">
-                                <i class="fa-solid fa-chevron-left"></i>
+                            <button class="btn btn-secondary btn-large" id="typingPrev" aria-label="Previous" title="Trước">
+                                <i class="fa-solid fa-chevron-left"></i> Trước
                             </button>
                             <button class="btn btn-primary btn-large" id="typingSubmit">
                                 <i class="fa-solid fa-check"></i> Kiểm Tra
                             </button>
-                            <button class="btn btn-secondary btn-icon" id="typingNext" aria-label="Next" title="Sau">
-                                <i class="fa-solid fa-chevron-right"></i>
+                            <button class="btn btn-secondary btn-large" id="typingNext" aria-label="Next" title="Sau">
+                                Sau <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <button class="btn btn-secondary btn-large" id="typingModeToggle" title="Đổi ngôn ngữ">
+                                <i class="fa-solid fa-rotate"></i> Đổi
                             </button>
                         </div>
                     </div>
@@ -254,11 +258,9 @@
                             <span id="quizCounter">1 / 0</span>
                         </div>
                         <div class="quiz-controls-header">
-                            <button class="btn btn-small" id="toggleQuestionLang">🔄 Đảo Ngôn Ngữ</button>
-                            <button class="btn btn-small" id="toggleAnswerLang">↔️ Đảo Đáp Án</button>
-                            <button class="btn btn-small" id="toggleAnswers">🎲 Đảo Đáp Án (Random)</button>
+                            <button class="btn btn-small" id="toggleQuestionLang">🔄 Đảo EN ↔ VI</button>
+                            <button class="btn btn-small" id="shuffleQuestions">🎲 Xáo Câu Hỏi</button>
                             <button class="btn btn-small" id="speakQuestion">🔊 Phát Âm</button>
-                            <button class="btn btn-small" id="resetQuestion">🔄 Làm Lại</button>
                         </div>
                     </div>
 
@@ -324,14 +326,10 @@
                         <select id="voiceSelect" class="select-input">
                             <option value="default">Mặc Định</option>
                         </select>
-                        <div style="margin-top:8px;display:flex;gap:8px;align-items:center;">
-                            <button class="btn btn-small" id="listVoicesBtn">Hiện Voices</button>
+                        <div style="margin-top:8px;">
                             <button class="btn btn-small" id="testVoiceBtn">Thử Giọng</button>
                         </div>
-                        <div id="voiceListDisplay" style="margin-top:10px;font-size:13px;color:var(--secondary);"></div>
                     </div>
-
-                    <button class="btn btn-danger" id="resetData">🗑️ Xóa Tất Cả Dữ Liệu</button>
                 </div>
             </div>
         </section>

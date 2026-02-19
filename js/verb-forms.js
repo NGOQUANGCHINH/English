@@ -154,8 +154,6 @@ const verbForms = {
 
         const row = button.closest('tr');
         row.classList.toggle('marked');
-
-        app.showToast(button.classList.contains('marked') ? 'Đã lưu động từ!' : 'Đã bỏ lưu!', 'info');
     }
 };
 
@@ -212,7 +210,7 @@ const verbFormsStyles = `
 
     .verb-row.marked {
         background: rgba(16, 185, 129, 0.1);
-        border-left: 4px solid var(--success);
+        box-shadow: inset 4px 0 0 var(--success);
     }
 
     .verb-no {
@@ -243,8 +241,9 @@ const verbFormsStyles = `
     }
 
     .verb-action {
-        width: 100px;
+        width: 90px;
         text-align: center;
+        white-space: nowrap;
     }
 
     .btn-mark {
@@ -257,6 +256,9 @@ const verbFormsStyles = `
         font-weight: 600;
         transition: all var(--transition);
         color: var(--text);
+        min-width: 80px;
+        text-align: center;
+        display: inline-block;
     }
 
     .btn-mark:hover {

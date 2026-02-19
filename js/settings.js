@@ -35,6 +35,11 @@ const settings = {
                 localStorage.setItem('speechRate', value);
                 window.speechRate = value;
                 
+                // Update app state so it uses the new rate immediately
+                if (window.app) {
+                    window.app.state.speechRate = value;
+                }
+                
                 // Show feedback
                 if (window.app) {
                     window.app.showToast(`Tốc độ nói: ${value.toFixed(1)}x`, 'info');
@@ -109,46 +114,29 @@ const settings = {
 
     resetAllData() {
         try {
-            // Clear all localStorage data
+            // Get dark mode state before clearing
+            const darkMode = localStorage.getItem('darkMode');
+            const speechRate = localStorage.getItem('speechRate');
+            const voiceName = localStorage.getItem('voiceName');
+
+            // Clear all localStorage data EXCEPT theme and speech settings
             localStorage.removeItem('vocabulary');
             localStorage.removeItem('learningHistory');
             localStorage.removeItem('mistakes');
             localStorage.removeItem('streak');
             localStorage.removeItem('lastLearningDate');
-            localStorage.removeItem('darkMode');
-            localStorage.removeItem('speechRate');
-            localStorage.removeItem('voiceName');
             localStorage.removeItem('notifications');
             localStorage.removeItem('backgroundMusic');
 
-            // Update UI elements immediately
+            // Show success message before reload
             if (window.app) {
-                // Reset vocabulary in app state
-                window.app.state.vocabulary = [];
-                
-                // Update dashboard stats
-                document.getElementById('streakValue').textContent = '0';
-                document.getElementById('totalWordsValue').textContent = '0';
-                document.getElementById('mistakesValue').textContent = '0';
-                document.getElementById('todayWordsValue').textContent = '0';
-                
-                // Update Typing Practice stats if visible
-                const typingScore = document.getElementById('typingScore');
-                const typingTotal = document.getElementById('typingTotal');
-                const typingStreak = document.getElementById('typingStreak');
-                if (typingScore) typingScore.textContent = '⭐ 0';
-                if (typingTotal) typingTotal.textContent = '📝 0';
-                if (typingStreak) typingStreak.textContent = '🔥 0';
-                
-                // Update progress bar
-                const progressBar = document.getElementById('typingProgressBar');
-                if (progressBar) progressBar.style.width = '0%';
-                
-                // Refresh all modules
-                window.app.refreshAllModules();
-                
                 window.app.showToast('Đã xóa tất cả dữ liệu', 'success');
             }
+
+            // Reload the page to update UI immediately
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
         } catch (error) {
             console.error('Error resetting data:', error);
             if (window.app) {

@@ -8,6 +8,7 @@ const typingPractice = {
     maxStreak: 0,
     totalAnswered: 0,
     isChecking: false, // Prevent multiple submissions
+    isEnglishQuestion: true, // true = English question, Vietnamese answer; false = Vietnamese question, English answer
 
     init() {
         this.vocabulary = [...window.app.state.vocabulary];
@@ -18,11 +19,10 @@ const typingPractice = {
         this.maxStreak = 0;
         this.totalAnswered = 0;
         this.isChecking = false;
+        this.isEnglishQuestion = true;
         
-        // Render container first if not already rendered
-        if (!document.getElementById('typingInput')) {
-            this.renderContainer();
-        }
+        // Always render container to ensure fresh UI and proper event listeners
+        this.renderContainer();
         
         this.setupEventListeners();
         this.displayQuestion();
@@ -51,6 +51,11 @@ const typingPractice = {
             this.previousQuestion();
         });
 
+        // Mode toggle button
+        document.getElementById('typingModeToggle')?.addEventListener('click', () => {
+            this.toggleMode();
+        });
+
         // Arrow keys navigation
         document.addEventListener('keydown', (e) => {
             if (app.state.currentSection === 'typing-practice') {
@@ -69,7 +74,32 @@ const typingPractice = {
 
         this.isChecking = false; // Reset checking state
 
-        document.getElementById('typingMeaning').textContent = word.meaning;
+        // Display question based on mode (English question or Vietnamese question)
+        const questionEl = document.getElementById('typingMeaning');
+        if (this.isEnglishQuestion) {
+            questionEl.textContent = word.meaning;
+        } else {
+            questionEl.textContent = word.term;
+        }
+        
+        // Update placeholder and label based on mode
+        const input = document.getElementById('typingInput');
+        const meaningLabel = document.querySelector('.meaning-label');
+        
+        if (this.isEnglishQuestion) {
+            input.placeholder = "Nhập từ tiếng Anh...";
+            if (meaningLabel) meaningLabel.textContent = "Nghĩa";
+        } else {
+            input.placeholder = "Nhập nghĩa tiếng Việt...";
+            if (meaningLabel) meaningLabel.textContent = "Từ";
+        }
+        
+        // Update mode toggle button text
+        const modeBtn = document.getElementById('typingModeToggle');
+        if (modeBtn) {
+            modeBtn.title = this.isEnglishQuestion ? "Đổi sang Tiếng Việt" : "Đổi sang Tiếng Anh";
+        }
+
         document.getElementById('typingCounter').textContent = 
             `${this.currentIndex + 1} / ${this.vocabulary.length}`;
 
@@ -83,7 +113,6 @@ const typingPractice = {
         // Update stats
         this.updateStats();
 
-        const input = document.getElementById('typingInput');
         input.value = '';
         input.focus();
 
@@ -115,7 +144,16 @@ const typingPractice = {
         const word = this.vocabulary[this.currentIndex];
         const input = document.getElementById('typingInput');
         const userAnswer = input.value.trim().toLowerCase();
-        const correctAnswer = word.term.toLowerCase();
+        
+        // Check answer based on mode
+        let correctAnswer;
+        if (this.isEnglishQuestion) {
+            // English question, Vietnamese answer
+            correctAnswer = word.term.toLowerCase();
+        } else {
+            // Vietnamese question, English answer
+            correctAnswer = word.meaning.toLowerCase();
+        }
 
         const feedback = document.getElementById('typingFeedback');
 
@@ -142,7 +180,8 @@ const typingPractice = {
             this.streak = 0;
             
             if (feedback) {
-                feedback.innerHTML = `<span class="feedback-icon">✗</span> Sai rồi! <br><span class="correct-answer">Đáp án: <strong>${word.term}</strong></span>`;
+                const correctAnswerDisplay = this.isEnglishQuestion ? word.term : word.meaning;
+                feedback.innerHTML = `<span class="feedback-icon">✗</span> Sai rồi! <br><span class="correct-answer">Đáp án: <strong>${correctAnswerDisplay}</strong></span>`;
                 feedback.className = 'typing-feedback incorrect';
             }
             
@@ -160,12 +199,17 @@ const typingPractice = {
         }
 
         this.userAnswers[this.currentIndex] = {
-            question: word.meaning,
+            question: this.isEnglishQuestion ? word.meaning : word.term,
             userAnswer: userAnswer,
             correct: userAnswer === correctAnswer
         };
 
         this.updateStats();
+    },
+
+    toggleMode() {
+        this.isEnglishQuestion = !this.isEnglishQuestion;
+        this.displayQuestion();
     },
 
     nextQuestion() {
@@ -226,6 +270,7 @@ const typingPractice = {
         this.maxStreak = 0;
         this.totalAnswered = 0;
         this.userAnswers = {};
+        this.isEnglishQuestion = true;
         
         // Re-render the container
         this.renderContainer();
@@ -272,14 +317,17 @@ const typingPractice = {
                     </div>
 
                     <div class="typing-controls">
-                        <button class="btn btn-secondary btn-icon" id="typingPrev" aria-label="Previous" title="Trước">
-                            <i class="fa-solid fa-chevron-left"></i>
+                        <button class="btn btn-secondary btn-large" id="typingPrev" aria-label="Previous" title="Trước">
+                            <i class="fa-solid fa-chevron-left"></i> Trước
                         </button>
                         <button class="btn btn-primary btn-large" id="typingSubmit">
                             <i class="fa-solid fa-check"></i> Kiểm Tra
                         </button>
-                        <button class="btn btn-secondary btn-icon" id="typingNext" aria-label="Next" title="Sau">
-                            <i class="fa-solid fa-chevron-right"></i>
+                        <button class="btn btn-secondary btn-large" id="typingNext" aria-label="Next" title="Sau">
+                            Sau <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <button class="btn btn-secondary btn-large" id="typingModeToggle" title="Đổi ngôn ngữ">
+                            <i class="fa-solid fa-rotate"></i> Đổi
                         </button>
                     </div>
                 </div>
@@ -302,7 +350,7 @@ const typingPracticeStyles = `
         gap: 24px;
     }
 
-    /* Stats Bar */
+
     .typing-stats-bar {
         display: flex;
         justify-content: space-between;
@@ -314,7 +362,7 @@ const typingPracticeStyles = `
     }
 
     .typing-stat {
-        color: white;
+        color: var(--dark);
         font-weight: 700;
         font-size: 20px;
         display: flex;
@@ -452,10 +500,18 @@ const typingPracticeStyles = `
         border: 2px solid var(--success);
     }
 
+    body.dark-mode .typing-feedback.correct {
+        color: #ffffff;
+    }
+
     .typing-feedback.incorrect {
         background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(252, 129, 129, 0.15));
         color: var(--danger);
         border: 2px solid var(--danger);
+    }
+
+    body.dark-mode .typing-feedback.incorrect {
+        color: #ffffff;
     }
 
     .feedback-icon {
