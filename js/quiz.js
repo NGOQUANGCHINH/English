@@ -33,35 +33,26 @@ const quiz = {
       .getElementById("quizPrev")
       ?.addEventListener("click", () => this.previousQuestion());
 
+    // Đảo EN ↔ VI (câu hỏi tiếng Anh, đáp án tiếng Việt và ngược lại)
     document
       .getElementById("toggleQuestionLang")
       ?.addEventListener("click", () => {
         this.questionLangEn = !this.questionLangEn;
+        // Khi đảo câu hỏi thì đáp án cũng đảo theo
+        this.answerLangEn = !this.questionLangEn;
         this.displayQuestion();
         app.showToast(
-          this.questionLangEn ? "Câu hỏi tiếng Anh" : "Câu hỏi tiếng Việt",
+          this.questionLangEn ? "Câu hỏi EN → Đáp án VI" : "Câu hỏi VI → Đáp án EN",
           "info",
         );
       });
 
-    document
-      .getElementById("toggleAnswerLang")
-      ?.addEventListener("click", () => {
-        this.answerLangEn = !this.answerLangEn;
-        this.displayQuestion();
-        app.showToast(
-          this.answerLangEn ? "Đáp án tiếng Anh" : "Đáp án tiếng Việt",
-          "info",
-        );
-      });
-
-    document.getElementById("toggleAnswers")?.addEventListener("click", () => {
-      this.answersShuffled = !this.answersShuffled;
+    // Xáo câu hỏi ngẫu nhiên
+    document.getElementById("shuffleQuestions")?.addEventListener("click", () => {
+      this.shuffleAllQuestions();
+      this.currentIndex = 0;
       this.displayQuestion();
-      app.showToast(
-        this.answersShuffled ? "Đáp án được đảo" : "Đáp án theo thứ tự gốc",
-        "info",
-      );
+      app.showToast("Đã xáo câu hỏi!", "info");
     });
 
     document.getElementById("speakQuestion")?.addEventListener("click", () => {
@@ -71,21 +62,24 @@ const quiz = {
       window.app.speak(q.term);
     });
 
-    document.getElementById("resetQuestion")?.addEventListener("click", () => {
-      delete this.selectedAnswers[this.currentIndex];
-      this.displayQuestion();
-      app.showToast("Đã làm lại câu này!", "info");
-    });
-
     document.getElementById("toggleQuizList")?.addEventListener("click", () => {
       this.showQuizList();
     });
 
-    // Arrow keys navigation
+    // Arrow keys navigation + Number keys 1-4 for quiz options
     document.addEventListener("keydown", (e) => {
       if (app.state.currentSection === "quiz") {
         if (e.key === "ArrowRight") this.nextQuestion();
         if (e.key === "ArrowLeft") this.previousQuestion();
+        
+        // Number keys 1-4 to select options A-B-C-D
+        if (["1", "2", "3", "4"].includes(e.key)) {
+          const index = parseInt(e.key) - 1;
+          // Only select if question hasn't been answered yet
+          if (!this.selectedAnswers[this.currentIndex]) {
+            this.selectOption(index);
+          }
+        }
       }
     });
   },
@@ -98,6 +92,14 @@ const quiz = {
       [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+  },
+
+  // Xáo thứ tự tất cả câu hỏi
+  shuffleAllQuestions() {
+    if (this.questions.length > 0) {
+      this.questions = this.shuffleArray(this.questions);
+      this.selectedAnswers = {};
+    }
   },
 
   generateQuestions() {
@@ -302,8 +304,8 @@ const quizStyles = `
   }
   body.dark-mode .quiz-question { background: linear-gradient(135deg, rgba(59,130,246,.2), rgba(99,102,241,.2)); }
 
-  .question-text { font-size: 32px; font-weight: 800; color: var(--dark); }
-  body.dark-mode .question-text { color: var(--light); }
+  .question-text { font-size: 32px; font-weight: 800; color: #000000; }
+  body.dark-mode .question-text { color: #ffffff; }
 
   .quiz-options { display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:20px; }
 
